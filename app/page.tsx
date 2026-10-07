@@ -111,7 +111,7 @@ const filteredProducts = products.filter((product) =>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="#new"
+                href="#shop"
                 className="bg-white text-black px-8 py-4 font-bold text-sm tracking-wider hover:bg-gray-200 transition"
               >
                 SHOP NEW DROP
