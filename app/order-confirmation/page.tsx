@@ -23,7 +23,7 @@ export default function OrderConfirmationPage() {
       <section className="flex flex-1 items-center justify-center px-6 py-20">
         <div className="w-full max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.3em]">
-            MUSCOD / Order Confirmed
+            MUSCOD / Order Received
           </p>
 
           <h1 className="mt-6 text-5xl font-black uppercase leading-none md:text-7xl">
@@ -31,9 +31,7 @@ export default function OrderConfirmationPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-lg text-base leading-7 text-neutral-600">
-            Your order has been received. We will contact you using the
-            information provided during checkout to confirm your order and
-            delivery details.
+            Your order has been received. Payment confirmation is still pending. We will process your order once your payment has been successfully verified.
           </p>
 
           <div className="mx-auto mt-10 max-w-md border-y border-black/20 py-6">
@@ -42,7 +40,7 @@ export default function OrderConfirmationPage() {
             </p>
 
             <p className="mt-2 text-sm text-neutral-600">
-              Confirmation pending
+              Awaiting payment verification
             </p>
           </div>
 
