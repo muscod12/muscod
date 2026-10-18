@@ -24,28 +24,33 @@ export async function POST(request: Request) {
 });
 
   const rawBody = await request.text();
-  const timestampNumber = Number(timestamp);
+ // Accept Unix timestamps (seconds or milliseconds)
+// and ISO 8601 date timestamps.
+let timestampMs: number;
 
-if (
-  !/^\d{10,13}$/.test(timestamp) ||
-  !Number.isSafeInteger(timestampNumber)
+if (/^\d{10}$/.test(timestamp)) {
+  timestampMs = Number(timestamp) * 1000;
+} else if (/^\d{13}$/.test(timestamp)) {
+  timestampMs = Number(timestamp);
+} else if (
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/.test(timestamp)
 ) {
+  timestampMs = Date.parse(timestamp);
+} else {
   return NextResponse.json(
-    { error: "Invalid webhook timestamp" },
+    { error: "Unsupported webhook timestamp format" },
     { status: 401 }
   );
 }
 
-const timestampMs =
-  timestamp.length === 10
-    ? timestampNumber * 1000
-    : timestampNumber;
-
 const fiveMinutes = 5 * 60 * 1000;
 
-if (Math.abs(Date.now() - timestampMs) > fiveMinutes) {
+if (
+  !Number.isFinite(timestampMs) ||
+  Math.abs(Date.now() - timestampMs) > fiveMinutes
+) {
   return NextResponse.json(
-    { error: "Expired webhook timestamp" },
+    { error: "Expired or invalid webhook timestamp" },
     { status: 401 }
   );
 }
