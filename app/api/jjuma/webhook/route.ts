@@ -15,6 +15,13 @@ export async function POST(request: Request) {
 
   const timestamp = request.headers.get("X-Jjuma-Timestamp") || "";
   const signature = request.headers.get("X-Jjuma-Signature") || "";
+  console.log("Jjuma webhook header diagnostics:", {
+  timestampPresent: Boolean(timestamp),
+  timestampLength: timestamp.length,
+  signaturePresent: Boolean(signature),
+  signatureLength: signature.length,
+  headerNames: Array.from(request.headers.keys()),
+});
 
   const rawBody = await request.text();
   const timestampNumber = Number(timestamp);
