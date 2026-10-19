@@ -89,9 +89,9 @@ const filteredProducts = products.filter((product) =>
       <section className="relative min-h-[85vh] bg-black text-white overflow-hidden">
 
         <img
-          src="/vest-red.jpg"
+          src="/hero.jpeg"
           alt="MUSCOD Classic Hefting Vest"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-80"
+          className="absolute inset-0 w-full h-full object-contain object-right opacity-80"
         />
 
         <div className="absolute inset-0 bg-black/35" />
